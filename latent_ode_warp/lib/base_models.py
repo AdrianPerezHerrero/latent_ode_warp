@@ -280,7 +280,7 @@ class VAE_Baseline(nn.Module):
 
 		# Evaluate only on breathing
 		mask_ = batch_dict["mask_predicted_data"]
-		mask_[:, :, 0] = mask_[:, :, 0] - mask_[:, :, 0]
+		mask_[:, :, 1] = mask_[:, :, 1] - mask_[:, :, 1]
 
 		# Compute likelihood of all the points
 		rec_likelihood = self.get_gaussian_likelihood(
