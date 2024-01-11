@@ -353,7 +353,7 @@ def normalize_masked_data(data, mask, att_min, att_max):
 		data_norm = (data - att_min) / (att_max - att_min)
 	else:
 		raise Exception("Zero!")
-
+	data_norm = data
 	if torch.isnan(data_norm).any():
 		raise Exception("nans!")
 
