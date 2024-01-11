@@ -235,7 +235,7 @@ if __name__ == '__main__':
 	##################################################################
 	
 	#Load checkpoint and evaluate the model
-	load_plotting = False
+	load_plotting = True
 	load_training = False
 	load_test = True
 	if args.load is not None:
