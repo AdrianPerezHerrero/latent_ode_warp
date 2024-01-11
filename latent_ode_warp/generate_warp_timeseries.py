@@ -172,11 +172,11 @@ class WarpTimeSeries(object):
 			#time = data[:n_samples,:,0]
 			#time = (time - torch.min(time)) / (torch.max(time) - torch.min(time))
 			time = data[i * n_samples:(i + 1) * n_samples, :, 0]
-			obs = data[i*n_samples:(i+1)*n_samples,:,1]
-			obs = np.stack([labels[i*n_samples:(i+1)*n_samples].numpy().T, obs.T]).T
-			obs = torch.from_numpy(obs.reshape((-1,2))).type(dtype).to(device)
-			#obs = labels[i * n_samples:(i + 1) * n_samples].numpy()
-			#obs = torch.from_numpy(obs.reshape((-1, 1))).type(dtype).to(device)
+			#obs = data[i*n_samples:(i+1)*n_samples,:,1]
+			#obs = np.stack([labels[i*n_samples:(i+1)*n_samples].numpy().T, obs.T]).T
+			#obs = torch.from_numpy(obs.reshape((-1,2))).type(dtype).to(device)
+			obs = labels[i * n_samples:(i + 1) * n_samples].numpy()
+			obs = torch.from_numpy(obs.reshape((-1, 1))).type(dtype).to(device)
 			mask = torch.ones(obs.shape).type(dtype).to(device)
 			if dat_included == 'breath':
 				#obs[:, 1] = torch.zeros(obs.shape[0]).type(dtype).to(device)
