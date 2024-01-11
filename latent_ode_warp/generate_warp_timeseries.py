@@ -173,7 +173,7 @@ class WarpTimeSeries(object):
 			#time = (time - torch.min(time)) / (torch.max(time) - torch.min(time))
 			time = data[i * n_samples:(i + 1) * n_samples, :, 0]
 			obs = scale(data[i*n_samples:(i+1)*n_samples,:,1])
-			obs = np.stack([scale(labels[i*n_samples:(i+1)*n_samples]).numpy().T, obs.T]).T
+			obs = np.stack([scale(labels[i*n_samples:(i+1)*n_samples].numpy()).T, obs.T]).T
 			obs = torch.from_numpy(obs.reshape((-1,2))).type(dtype).to(device)
 			#obs = labels[i * n_samples:(i + 1) * n_samples].numpy()
 			#obs = torch.from_numpy(obs.reshape((-1, 1))).type(dtype).to(device)
