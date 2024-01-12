@@ -241,7 +241,7 @@ if __name__ == '__main__':
 	if args.load is not None:
 		utils.get_ckpt_model(ckpt_path, model, device)
 		if load_plotting:
-			for i in range(10):
+			for i in range(3):
 				with torch.no_grad():
 					test_dict = utils.get_next_batch(data_obj["test_dataloader"])
 					train_dict = utils.get_next_batch(data_obj["train_dataloader"])
@@ -253,7 +253,7 @@ if __name__ == '__main__':
 						viz.draw_all_plots_one_dim(train_dict, model,
 												   plot_name=file_name + "_" + str(experimentID) + "_{:03d}".format(
 													   plot_id) + ".png",
-												   experimentID=experimentID, save=True)
+												   experimentID=experimentID, save=True)#, step_plot=i)
 						plt.pause(0.01)
 		if load_test:
 			test_res = compute_loss_all_batches(model,

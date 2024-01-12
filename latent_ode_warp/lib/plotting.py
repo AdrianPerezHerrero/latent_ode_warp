@@ -384,7 +384,7 @@ class Visualizations():
 
 
 	def draw_all_plots_one_dim(self, data_dict, model,
-		plot_name = "", save = False, experimentID = 0.):
+		plot_name = "", save = False, experimentID = 0., step_plot=0):
 
 		data =  data_dict["data_to_predict"]
 		time_steps = data_dict["tp_to_predict"]
@@ -408,10 +408,10 @@ class Visualizations():
 		dim_to_show = 0
 		n_traj_to_show = 3
 		# plot only 10 trajectories
-		data_for_plotting = observed_data[:n_traj_to_show]
-		mask_for_plotting = observed_mask[:n_traj_to_show]
-		reconstructions_for_plotting = reconstructions.mean(dim=0)[:n_traj_to_show]
-		reconstr_std = reconstructions.std(dim=0)[:n_traj_to_show]
+		data_for_plotting = observed_data[n_traj_to_show*step_plot:n_traj_to_show*(step_plot+1)]
+		mask_for_plotting = observed_mask[n_traj_to_show*step_plot:n_traj_to_show*(step_plot+1)]
+		reconstructions_for_plotting = reconstructions.mean(dim=0)[n_traj_to_show*step_plot:n_traj_to_show*(step_plot+1)]
+		reconstr_std = reconstructions.std(dim=0)[n_traj_to_show*step_plot:n_traj_to_show*(step_plot+1)]
 
 		# max_y = max(
 		# 	data_for_plotting[:,:,dim_to_show].cpu().numpy().max(),
