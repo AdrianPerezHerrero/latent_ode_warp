@@ -23,5 +23,5 @@ if __name__ == '__main__':
     #                '--latent-ode', '--noise-weight', '0.01', '--viz', '--extrap', '--load', '77615'])
     #subprocess.run(['python3', 'run_models.py', '--niters', '3000', '-n', '10', '-s', '300', '--dataset', 'warp',
     #                '--latent-ode', '--noise-weight', '0.01', '--viz', '--load', '93187'])
-    subprocess.run(['python3', 'run_models.py', '--niters', '3000', '-n', '10', '-s', '300', '--dataset', 'warp',
+    subprocess.run(['python3', 'run_models.py', '--niters', '3000', '-n', '40', '--dataset', 'warp',
                    '--latent-ode', '--noise-weight', '0.01', '--viz', '--load', '55910'])

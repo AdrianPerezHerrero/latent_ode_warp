@@ -166,8 +166,8 @@ class Visualizations():
 
 		#Changed to warp
 		self.ax_traj = []
-		for i in range(1, 4):
-			self.ax_traj.append(self.fig.add_subplot(2,3,i, frameon=False))
+		for i in range(1, 2):
+			self.ax_traj.append(self.fig.add_subplot(2,1,i, frameon=False))
 
 		# self.ax_density = []
 		# for i in range(4,7):
@@ -394,6 +394,11 @@ class Visualizations():
 		observed_data =  data_dict["observed_data"]
 		observed_time_steps = data_dict["observed_tp"]
 		observed_mask = data_dict["observed_mask"]
+		N_recons = 1000
+		mod_observed_data = observed_data.clone()
+		mod_observed_data[:, N_recons:, 0] = mod_observed_data[:, N_recons:, 0] - mod_observed_data[:, N_recons:, 0]
+		mod_observed_mask = observed_mask.clone()
+		mod_observed_mask[:, N_recons:, 0] = mod_observed_mask[:, N_recons:, 0] - mod_observed_mask[:, N_recons:, 0]
 
 		device = get_device(time_steps)
 
@@ -406,7 +411,7 @@ class Visualizations():
 			observed_data, observed_time_steps, mask = observed_mask, n_traj_samples = 3)
 
 		dim_to_show = 0
-		n_traj_to_show = 3
+		n_traj_to_show = 1
 		# plot only 10 trajectories
 		data_for_plotting = observed_data[n_traj_to_show*step_plot:n_traj_to_show*(step_plot+1)]
 		mask_for_plotting = observed_mask[n_traj_to_show*step_plot:n_traj_to_show*(step_plot+1)]
@@ -426,7 +431,7 @@ class Visualizations():
 		# Plot reconstructions, true postrior and approximate posterior
 
 		cmap = plt.cm.get_cmap('Set1')
-		for traj_id in range(0,3):
+		for traj_id in range(0,1):
 			# Plot observations
 			plot_trajectories(self.ax_traj[traj_id], 
 				data_for_plotting[traj_id].unsqueeze(0), observed_time_steps, 

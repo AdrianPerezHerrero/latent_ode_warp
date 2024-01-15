@@ -205,7 +205,7 @@ def parse_datasets(args, device):
 		record_id, tt, vals, mask, labels = train_data[0]
 		input_dim = vals.size(-1)
 		batch_size = min(min(len(dataset_obj), args.batch_size), args.n)
-		batch_size = 40
+		batch_size = 2
 		#batch_size = 100
 		data_min, data_max = get_data_min_max(train_data, device=device)
 		train_dataloader = DataLoader(train_data, batch_size=batch_size, shuffle=True,
