@@ -237,11 +237,11 @@ if __name__ == '__main__':
 	#Load checkpoint and evaluate the model
 	load_plotting = True
 	load_training = False
-	load_test = True
+	load_test = False
 	if args.load is not None:
 		utils.get_ckpt_model(ckpt_path, model, device)
 		if load_plotting:
-			for i in range(3):
+			for i in range(10):
 				with torch.no_grad():
 					test_dict = utils.get_next_batch(data_obj["test_dataloader"])
 					train_dict = utils.get_next_batch(data_obj["train_dataloader"])

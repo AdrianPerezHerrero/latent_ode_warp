@@ -405,7 +405,7 @@ class Visualizations():
 		time_steps_to_predict = time_steps
 		if isinstance(model, LatentODE):
 			# sample at the original time points
-			time_steps_to_predict = utils.linspace_vector(time_steps[0], time_steps[-1], 100).to(device)
+			time_steps_to_predict = utils.linspace_vector(time_steps[0], time_steps[-1], 2000).to(device)
 
 		reconstructions, info = model.get_reconstruction(time_steps_to_predict, 
 			observed_data, observed_time_steps, mask = observed_mask, n_traj_samples = 3)
@@ -424,8 +424,8 @@ class Visualizations():
 		# min_y = min(
 		# 	data_for_plotting[:,:,dim_to_show].cpu().numpy().min(),
 		# 	reconstructions[:,:,dim_to_show].cpu().numpy().min())
-		max_y = data_for_plotting[:, :, dim_to_show].cpu().numpy().max()
-		min_y = data_for_plotting[:, :, dim_to_show].cpu().numpy().min()
+		max_y = data_for_plotting[:, :, dim_to_show].cpu().numpy().max()+2.0
+		min_y = data_for_plotting[:, :, dim_to_show].cpu().numpy().min()-2.0
 
 		############################################
 		# Plot reconstructions, true postrior and approximate posterior
@@ -449,7 +449,7 @@ class Visualizations():
 				reconstructions_for_plotting[traj_id].unsqueeze(0), reconstr_std[traj_id].unsqueeze(0), 
 				time_steps_to_predict, alpha=0.5, color = cmap(3))
 			self.set_plot_lims(self.ax_traj[traj_id], "traj_" + str(traj_id))
-			
+			self.ax_traj[traj_id].vlines(observed_time_steps[N_recons].cpu(), min_y, max_y, colors='red')
 			# Plot true posterior and approximate posterior
 			# self.draw_one_density_plot(self.ax_density[traj_id],
 			# 	model, data_dict, traj_id = traj_id,

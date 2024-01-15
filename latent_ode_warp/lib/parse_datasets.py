@@ -201,20 +201,20 @@ def parse_datasets(args, device):
 		print(dataset_obj)
 		train_size = 0.9
 		train_data, test_data = model_selection.train_test_split(dataset_obj, train_size=train_size,
-																 random_state=42, shuffle=True)
+																 random_state=42, shuffle=False)
 		record_id, tt, vals, mask, labels = train_data[0]
 		input_dim = vals.size(-1)
 		batch_size = min(min(len(dataset_obj), args.batch_size), args.n)
 		batch_size = 2
 		#batch_size = 100
 		data_min, data_max = get_data_min_max(train_data, device=device)
-		train_dataloader = DataLoader(train_data, batch_size=batch_size, shuffle=True,
+		train_dataloader = DataLoader(train_data, batch_size=batch_size, shuffle=False,
 									  collate_fn=lambda batch:
 									  variable_time_collate_fn_warp(batch, args, device,
 																	data_type="train",
 																	data_min=data_min,
 																	data_max=data_max))
-		test_dataloader = DataLoader(test_data, batch_size=len(test_data), shuffle=True,
+		test_dataloader = DataLoader(test_data, batch_size=len(test_data), shuffle=False,
 									 collate_fn=lambda batch:
 									 variable_time_collate_fn_warp(batch, args, device,
 																   data_type="test",

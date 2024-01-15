@@ -168,7 +168,7 @@ class WarpTimeSeries(object):
 			labs = torch.ones(obs.shape[0]).type(dtype).to(device)
 			data_new.append(tuple([id, time, obs, mask, labs]))
 		#for i in range(10, 110):
-		for i in range(1,10):
+		for i in range(1,30):
 			#time = data[:n_samples,:,0]
 			#time = (time - torch.min(time)) / (torch.max(time) - torch.min(time))
 			time = data[i * n_samples:(i + 1) * n_samples, :, 0]
