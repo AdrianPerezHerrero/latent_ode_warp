@@ -408,7 +408,7 @@ class Visualizations():
 			time_steps_to_predict = utils.linspace_vector(time_steps[0], time_steps[-1], 2000).to(device)
 
 		reconstructions, info = model.get_reconstruction(time_steps_to_predict, 
-			observed_data, observed_time_steps, mask = observed_mask, n_traj_samples = 3)
+			mod_observed_data, observed_time_steps, mask = mod_observed_mask, n_traj_samples = 3)
 
 		dim_to_show = 0
 		n_traj_to_show = 1
